@@ -1,0 +1,10 @@
+to run the client run command: npm start
+to run backend command: npm index.js
+
+
+to create backend server
+1 go to api folder 
+    run : npm init -y  to initial the server
+    package.json file will be created in this directory
+    run : npm add express mysql nodemon
+    
