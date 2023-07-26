@@ -1,5 +1,6 @@
 to run the client run command: npm start
-to run backend command: npm index.js
+client side run on port no 3000  :  http://localhost:3000/
+to run backend command: node index.js
 
 
 to create backend server
@@ -7,4 +8,8 @@ to create backend server
     run : npm init -y  to initial the server
     package.json file will be created in this directory
     run : npm add express mysql nodemon
-    
+
+
+install bcryptjs: npm add bcryptjs
+
+install jsonwebtoken,cookie-parser,cors :  npm add jsonwebtoken cookie-parser cors

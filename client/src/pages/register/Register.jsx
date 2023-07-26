@@ -1,20 +1,38 @@
-// import { useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../context/authContext";
 import "./register.scss";
+import axios from "axios";
 
 const Register = () => {
-  // const { login } = useContext(AuthContext);
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+    password: "",
+    name: "",
+  });
+  const [err, setErr] = useState(null);
 
-  // const handleLogin = () => {
-  //   login();
-  // };
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axios.post("http://localhost:8800/api/auth/register", inputs);
+    } catch (err) {
+      setErr(err.response.data);
+    }
+  };
+
+  console.log(err)
 
   return (
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>Hello World.</h1>
+          <h1>Lama Social.</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
             alias totam numquam ipsa exercitationem dignissimos, error nam,
@@ -22,20 +40,38 @@ const Register = () => {
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
-            <button>login</button>
+            <button>Login</button>
           </Link>
-          {/* <button>Login</button> */}
         </div>
         <div className="right">
           <h1>Register</h1>
           <form>
-            <input type="text" placeholder="Username" />
-            <input type="email" placeholder="email"/>
-            <input type="password" placeholder="Password" />
-            <input type="text" placeholder="name"/>
-            {/* <button onClick={handleLogin}>Login</button> */}
-           
-            <button>Register</button>
+            <input
+              type="text"
+              placeholder="Username"
+              name="username"
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              onChange={handleChange}
+            />
+            {err && err}
+            <button onClick={handleClick}>Register</button>
           </form>
         </div>
       </div>
@@ -44,3 +80,57 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
+
+
+
+// changes by me
+// import { useContext } from "react";
+// import { Link } from "react-router-dom";
+// // import { AuthContext } from "../../context/authContext";
+// import "./register.scss";
+
+// const Register = () => {
+//   // const { login } = useContext(AuthContext);
+
+//   // const handleLogin = () => {
+//   //   login();
+//   // };
+
+//   return (
+//     <div className="register">
+//       <div className="card">
+//         <div className="left">
+//           <h1>Hello World.</h1>
+//           <p>
+//             Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
+//             alias totam numquam ipsa exercitationem dignissimos, error nam,
+//             consequatur.
+//           </p>
+//           <span>Do you have an account?</span>
+//           <Link to="/login">
+//             <button>login</button>
+//           </Link>
+//           {/* <button>Login</button> */}
+//         </div>
+//         <div className="right">
+//           <h1>Register</h1>
+//           <form>
+//             <input type="text" placeholder="Username" />
+//             <input type="email" placeholder="email"/>
+//             <input type="password" placeholder="Password" />
+//             <input type="text" placeholder="name"/>
+//             {/* <button onClick={handleLogin}>Login</button> */}
+           
+//             <button>Register</button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Register;
